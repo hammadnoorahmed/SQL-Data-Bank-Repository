@@ -9492,6 +9492,7 @@ where percent_growth > 5;
 
 
 #PartC DataAllocation
+
 #option 1 
 with monthlybalance 
 as(
@@ -9513,6 +9514,8 @@ from previousmonthbalance
 group by month_
 order by month_ ASC;
 
+
+#option 2
 #data is updated based on average balance of previous thirty days
 with monthlybalance -- cte for monthly balance as we did above
 as(
@@ -9530,11 +9533,11 @@ Averagebalance as
 avg(closing_balance) over (partition by customer_id) as average_balance
 from closing_balance
 group by customer_id, month_)
-select month_, round(sum(average_balance),0) as data_required
+select month_, round(sum(case when average_balance>0 then average_balance else 0 end),0) as data_required
 from Averagebalance
 group by month_
 order by month_;
-	
+
 
 #option 3: real time update
 with balance as
@@ -9544,7 +9547,7 @@ when txn_type = 'deposit' then txn_amount else 0 - txn_amount end)
 over (partition by customer_id order by customer_id ASC, txn_date ASC) as CustomerBalance 
 from customer_transactions)
 Select month(txn_date) as month_,
-sum(CustomerBalance) as data_required
+sum(case when CustomerBalance > 0 then CustomerBalance else 0 end) as data_required
 from balance
 group by month(txn_date)
 order by month(txn_date);
