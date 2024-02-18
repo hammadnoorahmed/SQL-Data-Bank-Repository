@@ -56,3 +56,7 @@ Special notes:
 
 ● Data Bank wants an initial calculation which does not allow for compounding interest, however they may also be interested in a daily compounding interest calculation so you can try to perform this
 calculation if you have the stamina!
+
+
+## Link to Canva Presentation
+https://www.canva.com/design/DAF9KTIKz1s/21cmwA_e2iTOEYWnFc1G4w/edit?utm_content=DAF9KTIKz1s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
