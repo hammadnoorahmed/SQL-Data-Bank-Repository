@@ -1,4 +1,4 @@
-
+#Schemaload
 #SET search_path = data_bank;
 CREATE TABLE regions (
 region_id INTEGER,
@@ -9361,7 +9361,8 @@ VALUES
 ('189', '2020-01-22', 'deposit', '302'),
 ('189', '2020-01-27', 'withdrawal', '861');
 
-#nodes
+#partA 
+#number of nodes
 Select count(distinct node_id) as Number_of_nodes
 from customer_nodes;
 
@@ -9407,7 +9408,7 @@ MAX(CASE WHEN rows_number = round((0.95 * total_rows),0) THEN days_difference EN
 from rows_
 group by region_name;
 
-
+#partB
 #count of all transactions and amount
 Select txn_type, count(txn_amount) as Transaction_Total, sum(txn_amount) as total_transaction_amount
 from customer_transactions
@@ -9489,6 +9490,8 @@ from
 percentgrowth
 where percent_growth > 5;
 
+
+#PartC DataAllocation
 #option 1 
 with monthlybalance 
 as(
@@ -9595,6 +9598,7 @@ group by customer_id
 order by customer_id;
 
 
+#Extra Challenge of Compunding interest
 #interestchallange #extra
 with dailybalance 
 as
