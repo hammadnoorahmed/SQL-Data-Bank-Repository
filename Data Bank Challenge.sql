@@ -9444,7 +9444,7 @@ when month_ = 2 then 'Feb'
 when month_ = 3 then 'Mar' else 'Apr' end as Month_name, 
 count(distinct customer_id) as active_customer_accounts
 from customer_account
-where deposits > 1 AND (purchases > 1 OR withdrawals > 1)
+where deposits > 1 AND (purchases > 0 OR withdrawals > 0)
 group by month_
 order by active_customer_accounts DESC;
 
